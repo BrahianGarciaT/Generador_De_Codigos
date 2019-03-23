@@ -42,12 +42,16 @@ public class generador {
         String strCodigo = "";
         for (int i = 0; i < intDigitos; i++) {
             int intAleatorio = aleatorio.nextInt(4) + 1;
-            if (intAleatorio == 1) {
-                strCodigo += GenerarNumero();
-            } else if (intAleatorio == 2) {
-                strCodigo += GenerarLetra();
-            } else {
-                strCodigo += GenerarSimbolo();
+            switch (intAleatorio) {
+                case 1:
+                    strCodigo += GenerarNumero();
+                    break;
+                case 2:
+                    strCodigo += GenerarLetra();
+                    break;
+                default:
+                    strCodigo += GenerarSimbolo();
+                    break;
             }
         }
         return strCodigo;
