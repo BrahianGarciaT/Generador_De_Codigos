@@ -21,20 +21,33 @@ public class generador {
         if (intTipo == 1) {
             char chaAleatorio = (char) (aleatorio.nextInt(26) + 97);
             return chaAleatorio;
-        }else{
+        } else {
             char chaAleatorio = (char) (aleatorio.nextInt(26) + 65);
             return chaAleatorio;
         }
     }
-    
-    public String GenerarCodigo(){
+
+    public char GenerarSimbolo() {
+        int intTipo = aleatorio.nextInt(3) + 1;
+        if (intTipo == 1) {
+            char chaAleatorio = (char) (aleatorio.nextInt(15) + 33);
+            return chaAleatorio;
+        } else {
+            char chaAleatorio = (char) (aleatorio.nextInt(7) + 58);
+            return chaAleatorio;
+        }
+    }
+
+    public String GenerarCodigo() {
         String strCodigo = "";
         for (int i = 0; i < intDigitos; i++) {
-            int intAleatorio = aleatorio.nextInt(3) + 1;
+            int intAleatorio = aleatorio.nextInt(4) + 1;
             if (intAleatorio == 1) {
                 strCodigo += GenerarNumero();
-            }else{
+            } else if (intAleatorio == 2) {
                 strCodigo += GenerarLetra();
+            } else {
+                strCodigo += GenerarSimbolo();
             }
         }
         return strCodigo;
