@@ -38,22 +38,44 @@ public class generador {
         }
     }
 
-    public String GenerarCodigo() {
+    public String GenerarCodigo(boolean blnLetras, boolean blnNumeros, boolean blnSimbolos) {
         String strCodigo = "";
-        for (int i = 0; i < intDigitos; i++) {
-            int intAleatorio = aleatorio.nextInt(4) + 1;
-            switch (intAleatorio) {
-                case 1:
-                    strCodigo += GenerarNumero();
-                    break;
-                case 2:
-                    strCodigo += GenerarLetra();
-                    break;
-                default:
-                    strCodigo += GenerarSimbolo();
-                    break;
+        if (intDigitos != 0) {
+            if (blnLetras || blnNumeros || blnSimbolos) {
+                for (int i = 0; i < intDigitos; i++) {
+                    boolean continuar = true;
+                    while (continuar) {
+                        int intAleatorio = aleatorio.nextInt(4) + 1;
+                        switch (intAleatorio) {
+                            case 1:
+                                if (blnNumeros) {
+                                    strCodigo += GenerarNumero();
+                                    continuar = false;
+                                }
+                                break;
+                            case 2:
+                                if (blnLetras) {
+                                    strCodigo += GenerarLetra();
+                                    continuar = false;
+                                }
+                                break;
+                            case 3:
+                                if (blnSimbolos) {
+                                    strCodigo += GenerarSimbolo();
+                                    continuar = false;
+                                }
+                                break;
+                        }
+                    }
+
+                }
+                return strCodigo;
+            } else {
+                return "Selecciona almenos un checkbox.";
             }
+        } else {
+            return "Especifica una cantidad de dígitos.";
         }
-        return strCodigo;
+
     }
 }
